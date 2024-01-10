@@ -36,8 +36,8 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
-	void DrawBox();
-	void FixedBox();
+	void DrawFace(int x, int y);
+	void DrawPoo(int x, int y);
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -45,17 +45,16 @@ private:
 
 	/********************************/
 	/*  User Variables              */
-	int top = 300;
-	int right = 400;
-	int topVelocity = 0;
-	int rightVelocity = 0;
-	int gb = 255;
-	bool shapeIsChanged = false;
-	bool topInhibit = false;
-	bool downInhibit = false;
-	bool rightInhibit = false;
-	bool leftInhibit = false;
-	int secondright = 100;
-	int secondtop = 200;
+	int dudeX = 400;
+	int dudeY = 300;
+	int poo0X = 300;
+	int poo0Y = 150;
+	bool poo0IsEaten = false;
+	int poo1X = 100;
+	int poo1Y = 500;
+	bool poo1IsEaten = false;
+	int poo2X = 600;
+	int poo2Y = 400;
+	bool poo2IsEaten = false;
 	/********************************/
 };
