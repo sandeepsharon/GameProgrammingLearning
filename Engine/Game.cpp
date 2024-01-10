@@ -600,6 +600,41 @@ void Game::DrawPoo(int x, int y)
 
 }
 
+int Game::ClampScreenX(int x, int width)
+{
+	const int right = x + width;
+	if (x<0)
+	{
+		return x;
+	}
+	else if (right >= gfx.ScreenWidth)
+	{
+		return (gfx.ScreenWidth - 1) - width;
+	}
+	else
+	{
+		return x;
+	}
+	
+}
+
+int Game::ClampScreenY(int y, int height)
+{
+	const int bottom = y + height;
+	if (y<0)
+	{
+		return y;
+	}
+	else if (bottom >= gfx.ScreenHeight)
+	{
+		return (gfx.ScreenHeight - 1) - height;
+	}
+	else
+	{
+		return y;
+	}
+}
+
 void Game::ComposeFrame()
 {
 	DrawFace(dudeX, dudeY);
