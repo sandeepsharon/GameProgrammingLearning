@@ -20,7 +20,6 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
-#include <iostream>
 
 Game::Game( MainWindow& wnd )
 	:
@@ -39,8 +38,24 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	
-	
+	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+	{
+		dudeX = dudeX + 1;
+	}
+	if (wnd.kbd.KeyIsPressed(VK_LEFT))
+	{
+		dudeX = dudeX - 1;
+	}
+	if (wnd.kbd.KeyIsPressed(VK_DOWN))
+	{
+		dudeY = dudeY + 1;
+	}
+	if (wnd.kbd.KeyIsPressed(VK_UP))
+	{
+		dudeY = dudeY - 1;
+	}
+	dudeX = ClampScreenX(dudeX, dudeWidth);
+	dudeY = ClampScreenY(dudeY, dudeHeight);
 }
 
 void Game::DrawFace(int x, int y)
@@ -605,7 +620,7 @@ int Game::ClampScreenX(int x, int width)
 	const int right = x + width;
 	if (x<0)
 	{
-		return x;
+		return 0;
 	}
 	else if (right >= gfx.ScreenWidth)
 	{
@@ -623,7 +638,7 @@ int Game::ClampScreenY(int y, int height)
 	const int bottom = y + height;
 	if (y<0)
 	{
-		return y;
+		return 0;
 	}
 	else if (bottom >= gfx.ScreenHeight)
 	{
