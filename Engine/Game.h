@@ -40,6 +40,8 @@ private:
 	void DrawPoo(int x, int y);
 	int ClampScreenX(int x, int width);
 	int ClampScreenY(int y, int height);
+	bool IsColliding(int x0, int y0, int width0, int height0,
+		int x1, int y1, int width1, int height1);
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -60,5 +62,7 @@ private:
 	int poo2X = 600;
 	int poo2Y = 400;
 	bool poo2IsEaten = false;
+	int pooWidth = 24;
+	int pooHeight = 24;
 	/********************************/
 };
