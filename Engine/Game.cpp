@@ -40,7 +40,6 @@ void Game::UpdateModel()
 {
 	if (IsStarted)
 	{
-
 		if (wnd.kbd.KeyIsPressed(VK_RIGHT))
 		{
 			dudeX = dudeX + 1;
