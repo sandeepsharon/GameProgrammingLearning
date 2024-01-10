@@ -679,9 +679,22 @@ bool Game::IsColliding(int x0, int y0, int width0, int height0, int x1, int y1, 
 void Game::ComposeFrame()
 {
 	DrawFace(dudeX, dudeY);
-	DrawPoo(poo0X, poo0Y);
-	DrawPoo(poo1X, poo1Y);
-	DrawPoo(poo2X, poo2Y);
+	if (!poo0IsEaten)
+	{
+		DrawPoo(poo0X, poo0Y);
+	}
+	if (!poo1IsEaten)
+	{
+		DrawPoo(poo1X, poo1Y);
+	}
+	if (!poo2IsEaten)
+	{
+		DrawPoo(poo2X, poo2Y);
+	}
+
+	
+	
+	
 	
 
 }
