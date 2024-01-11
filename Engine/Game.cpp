@@ -36,6 +36,8 @@ Game::Game( MainWindow& wnd )
 	poo1.y = yDist(rng);
 	poo2.x = xDist(rng);
 	poo2.y = yDist(rng);
+	dude.x = 400;
+	dude.y = 300;
 }
 
 void Game::Go()
@@ -48,43 +50,33 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+
 	if (IsStarted)
 	{
 		if (wnd.kbd.KeyIsPressed(VK_RIGHT))
 		{
-			dudeX = dudeX + 1;
+			dude.x = dude.x + 1;
 		}
 		if (wnd.kbd.KeyIsPressed(VK_LEFT))
 		{
-			dudeX = dudeX - 1;
+			dude.x = dude.x - 1;
 		}
 		if (wnd.kbd.KeyIsPressed(VK_DOWN))
 		{
-			dudeY = dudeY + 1;
+			dude.y = dude.y + 1;
 		}
 		if (wnd.kbd.KeyIsPressed(VK_UP))
 		{
-			dudeY = dudeY - 1;
+			dude.y = dude.y - 1;
 		}
-		dudeX = ClampScreenX(dudeX, dudeWidth);
-		dudeY = ClampScreenY(dudeY, dudeHeight);
-
+		dude.ClampToScreen();
 		poo0.Update();
 		poo1.Update();
 		poo2.Update();
 
-		if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, poo0.x, poo0.y, poo0.width, poo0.height))
-		{
-			poo0.isEaten = true;
-		}
-		if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, poo1.x, poo1.y, poo1.width, poo1.height))
-		{
-			poo1.isEaten = true;
-		}
-		if (IsColliding(dudeX, dudeY, dudeWidth, dudeHeight, poo2.x, poo2.y, poo2.width, poo2.height))
-		{
-			poo2.isEaten = true;
-		}
+		poo0.ProcessConsumption(dude.x, dude.y, dude.width, dude.height);
+		poo1.ProcessConsumption(dude.x, dude.y, dude.width, dude.height);
+		poo2.ProcessConsumption(dude.x, dude.y, dude.width, dude.height);
 	}
 	else
 	{
@@ -29000,54 +28992,6 @@ void Game::DrawTitleScreen(int x, int y)
 
 }
 
-int Game::ClampScreenX(int x, int width)
-{
-	const int right = x + width;
-	if (x<0)
-	{
-		return 0;
-	}
-	else if (right >= gfx.ScreenWidth)
-	{
-		return (gfx.ScreenWidth - 1) - width;
-	}
-	else
-	{
-		return x;
-	}
-	
-}
-
-int Game::ClampScreenY(int y, int height)
-{
-	const int bottom = y + height;
-	if (y<0)
-	{
-		return 0;
-	}
-	else if (bottom >= gfx.ScreenHeight)
-	{
-		return (gfx.ScreenHeight - 1) - height;
-	}
-	else
-	{
-		return y;
-	}
-}
-
-bool Game::IsColliding(int x0, int y0, int width0, int height0, int x1, int y1, int width1, int height1)
-{
-	const int right0 = x0 + width0;
-	const int bottom0 = y0 + height0;
-	const int right1 = x1 + width1;
-	const int bottom1 = y1 + height1;
-	
-	return
-		right0 >= x1 &&
-		x0 <= right1 &&
-		bottom0 >= y1 &&
-		y0 <= bottom1;
-}
 
 void Game::ComposeFrame()
 {
@@ -29061,7 +29005,7 @@ void Game::ComposeFrame()
 		{
 			DrawGameOver(358, 268);
 		}
-		DrawFace(dudeX, dudeY);
+		DrawFace(dude.x, dude.y);
 		if (!poo0.isEaten)
 		{
 			DrawPoo(poo0.x, poo0.y);
