@@ -8,7 +8,7 @@ public:
 	int y;
 	int vx = 1;
 	int vy = 1;
-	int width = 24;
-	int height = 24;
+	static constexpr int width = 24;
+	static constexpr int height = 24;
 	bool isEaten = false;
 };
