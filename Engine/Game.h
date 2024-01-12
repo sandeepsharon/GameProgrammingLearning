@@ -36,8 +36,7 @@ private:
 	void UpdateModel();
 	/********************************/
 	/*  User Functions              */
-	void DrawBox();
-	void FixedBox();
+
 	/********************************/
 private:
 	MainWindow& wnd;
@@ -45,17 +44,6 @@ private:
 
 	/********************************/
 	/*  User Variables              */
-	int top = 300;
-	int right = 400;
-	int topVelocity = 0;
-	int rightVelocity = 0;
-	int gb = 255;
-	bool shapeIsChanged = false;
-	bool topInhibit = false;
-	bool downInhibit = false;
-	bool rightInhibit = false;
-	bool leftInhibit = false;
-	int secondright = 100;
-	int secondtop = 200;
+	
 	/********************************/
 };
