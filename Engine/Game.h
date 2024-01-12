@@ -23,6 +23,7 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include "Rectangles.h"
 
 class Game
 {
@@ -44,6 +45,7 @@ private:
 
 	/********************************/
 	/*  User Variables              */
+	Rectangles rec;
 	
 	/********************************/
 };

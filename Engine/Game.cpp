@@ -27,6 +27,10 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd )
 {
+	rec.length = 200;
+	rec.breadth = 100;
+	rec.x = 400;
+	rec.y = 300;
 }
 
 void Game::Go()
@@ -39,10 +43,47 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	
+	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
+	{
+		rec.x++;
+	}
+	if (wnd.kbd.KeyIsPressed(VK_LEFT))
+	{
+		rec.x--;
+	}
+	if (wnd.kbd.KeyIsPressed(VK_UP))
+	{
+		rec.y--;
+	}
+	if (wnd.kbd.KeyIsPressed(VK_DOWN))
+	{
+		rec.y++;
+	}
+	if (wnd.kbd.KeyIsPressed('W'))
+	{
+		rec.breadth++;
+	}
+	if (wnd.kbd.KeyIsPressed('A'))
+	{
+		rec.length--;
+
+	}
+	if (wnd.kbd.KeyIsPressed('D'))
+	{
+		rec.length++;
+	}
+	if (wnd.kbd.KeyIsPressed('S'))
+	{
+		rec.breadth--;
+	}
+	rec.ClampToScreen();
 }
 
 void Game::ComposeFrame()
 {
-	 
+	for (int i = 0; i < rec.breadth; i++) {
+		for (int j = 0; j < rec.length; j++) {
+			gfx.PutPixel(j + rec.x, i + rec.y, 255, 255, 255);
+		}
+	}
 }
