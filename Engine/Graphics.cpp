@@ -326,7 +326,6 @@ void Graphics::DrawRect(Rectangles& rec, Color c)
 		}
 	}
 }
-
 //////////////////////////////////////////////////
 //           Graphics Exception
 Graphics::Exception::Exception( HRESULT hr,const std::wstring& note,const wchar_t* file,unsigned int line )
