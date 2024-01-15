@@ -81,9 +81,9 @@ void Game::UpdateModel()
 
 void Game::ComposeFrame()
 {
-	for (int i = 0; i < rec.breadth; i++) {
-		for (int j = 0; j < rec.length; j++) {
-			gfx.PutPixel(j + rec.x, i + rec.y, 255, 255, 255);
-		}
-	}
+	Color c;
+	c.SetR(255);
+	c.SetG(255);
+	c.SetB(0);
+	gfx.DrawRect(rec, c);
 }
