@@ -3,23 +3,39 @@
 
 void Rectangles::ClampToScreen()
 {
-	const int right = x + length;
-	const int bottom = y + breadth;
-	if (x<0)
+	const int right = x0 + x1;
+	const int bottom = y0 + y1;
+	const int tempx1 = x1;
+	if (x0<=0)
 	{
-		x = 0;
+		x0 = 0;
+		lefthit = true;
 	}
-	else if (right>=Graphics::ScreenWidth)
+	else if (x1>=Graphics::ScreenWidth-1)
 	{
-		x = Graphics::ScreenWidth - 1 - length;
+		x1 = Graphics::ScreenWidth - 1;
+		righthit = true;
 	}
-	if (y < 0)
+	else
 	{
-		y = 0;
+		righthit = false;
+		lefthit = false;
 	}
-	else if (bottom >= Graphics::ScreenHeight)
+
+	if (y0 <= 0)
 	{
-		y = Graphics::ScreenHeight - 1 - breadth;
+		y0 = 0;
+		tophit = true;
+	}
+	else if (y1 >= Graphics::ScreenHeight-1)
+	{
+		y1 = Graphics::ScreenHeight - 1;
+		bottomhit = true;
+	}
+	else
+	{
+		tophit = false;
+		bottomhit = false;
 	}
 
 }

@@ -27,10 +27,10 @@ Game::Game( MainWindow& wnd )
 	wnd( wnd ),
 	gfx( wnd )
 {
-	rec.length = 200;
-	rec.breadth = 100;
-	rec.x = 400;
-	rec.y = 300;
+	rec.x1 = 200;
+	rec.y1 = 200;
+	rec.x0 = 100;
+	rec.y0 = 100;
 }
 
 void Game::Go()
@@ -43,44 +43,50 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	if (wnd.kbd.KeyIsPressed(VK_RIGHT))
-	{
-		rec.x++;
-	}
-	if (wnd.kbd.KeyIsPressed(VK_LEFT))
-	{
-		rec.x--;
-	}
-	if (wnd.kbd.KeyIsPressed(VK_UP))
-	{
-		rec.y--;
-	}
-	if (wnd.kbd.KeyIsPressed(VK_DOWN))
-	{
-		rec.y++;
-	}
-	if (wnd.kbd.KeyIsPressed('W'))
-	{
-		rec.breadth++;
-	}
-	if (wnd.kbd.KeyIsPressed('A'))
-	{
-		rec.length--;
+		if (wnd.kbd.KeyIsPressed(VK_RIGHT) && !rec.righthit)
+		{
+			rec.x0++;
+			rec.x1++;
+		}
 
-	}
-	if (wnd.kbd.KeyIsPressed('D'))
-	{
-		rec.length++;
-	}
-	if (wnd.kbd.KeyIsPressed('S'))
-	{
-		rec.breadth--;
-	}
-	if (wnd.mouse.LeftIsPressed())
-	{
-		rec.length = wnd.mouse.GetPosX();
-		rec.breadth = wnd.mouse.GetPosY();
-	}
+		if (wnd.kbd.KeyIsPressed(VK_LEFT) && !rec.lefthit)
+		{
+			rec.x0--;
+			rec.x1--;
+		}
+
+		if (wnd.kbd.KeyIsPressed(VK_UP) && !rec.tophit)
+		{
+			rec.y0--;
+			rec.y1--;
+		}
+		if (wnd.kbd.KeyIsPressed(VK_DOWN) && !rec.bottomhit)
+		{
+			rec.y0++;
+			rec.y1++;
+		}
+		if (wnd.kbd.KeyIsPressed('W'))
+		{
+			rec.y0--;
+		}
+		if (wnd.kbd.KeyIsPressed('A'))
+		{
+			rec.x0--;
+
+		}
+		if (wnd.kbd.KeyIsPressed('D'))
+		{
+			rec.x1++;
+		}
+		if (wnd.kbd.KeyIsPressed('S'))
+		{
+			rec.y1++;
+		}
+		if (wnd.mouse.LeftIsPressed())
+		{
+			rec.x1 = wnd.mouse.GetPosX();
+			rec.y1 = wnd.mouse.GetPosY();
+		}
 	rec.ClampToScreen();
 }
 
