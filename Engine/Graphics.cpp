@@ -319,7 +319,6 @@ void Graphics::PutPixel( int x,int y,Color c )
 
 void Graphics::DrawRect(Rectangles& rec, Color c)
 {
-
 	for (auto i = 0; i < rec.breadth; i++) {
 		for (int j = 0; j < rec.length; j++) {
 			PutPixel(j + rec.x, i + rec.y, c);

@@ -76,6 +76,11 @@ void Game::UpdateModel()
 	{
 		rec.breadth--;
 	}
+	if (wnd.mouse.LeftIsPressed())
+	{
+		rec.length = wnd.mouse.GetPosX();
+		rec.breadth = wnd.mouse.GetPosY();
+	}
 	rec.ClampToScreen();
 }
 
