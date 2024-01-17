@@ -319,8 +319,20 @@ void Graphics::PutPixel( int x,int y,Color c )
 
 void Graphics::DrawRect(Rectangles& rec, Color c)
 {
-	for (auto i = rec.y0; i < rec.y1; i++) {
-		for (int j = rec.x0; j < rec.x1; j++) {
+	int x0 = rec.x0;
+	int x1 = rec.x1;
+	int y0 = rec.y0;
+	int y1 = rec.y1;
+	if (x1 <= x0)
+	{
+		std::swap(x0, x1);
+	}
+	if (y1 <= y0)
+	{
+		std::swap(y0, y1);
+	}
+	for (auto i = y0; i < y1; i++) {
+		for (int j = x0; j < x1; j++) {
 			PutPixel(j, i, c);
 		}
 	}
