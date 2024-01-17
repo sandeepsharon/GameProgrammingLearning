@@ -30,25 +30,25 @@ void Poo::Update()
 	}
 }
 
-void Poo::ProcessConsumption(int dudex, int dudey, int dudewidth, int dudeheight)
+void Poo::ProcessConsumption(const Dude& dude)
 {
-	const int duderight = dudex + dudewidth;
-	const int dudebottom = dudey + dudeheight;
+	const int duderight = dude.x + dude.width;
+	const int dudebottom = dude.y + dude.height;
 	const int pooright = x + width;
 	const int poobottom = y + height;
 
 	if (
 		duderight >= x &&
-		dudex <= pooright &&
+		dude.x <= pooright &&
 		dudebottom >= y &&
-		dudey <= poobottom
+		dude.y <= poobottom
 		)
 	{
 		isEaten = true;
 	}
 }
 
-void Poo::Draw(Graphics& gfx)
+void Poo::Draw(Graphics& gfx) const
 {
 		gfx.PutPixel(14 + x, 0 + y, 138, 77, 0);
 		gfx.PutPixel(7 + x, 1 + y, 138, 77, 0);
