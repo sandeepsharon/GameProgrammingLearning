@@ -21,18 +21,24 @@
 #include "MainWindow.h"
 #include "Game.h"
 #include<random>
-Game::Game(MainWindow& wnd)
+Game::Game( MainWindow& wnd )
 	:
-	wnd(wnd),
-	gfx(wnd),
-	rng(rd()),
-	xDist(0,770),
-	yDist(0,570),
-	poo0(xDist(rng),yDist(rng),1,1),
-	poo1(xDist(rng), yDist(rng), -1, 1),
-	poo2(xDist(rng), yDist(rng), 1, -1)
-
-{}
+	wnd( wnd ),
+	gfx( wnd )
+{
+	std::random_device rd;
+	std::mt19937 rng(rd());
+	std::uniform_int_distribution<int> xDist(0, 770);
+	std::uniform_int_distribution<int> yDist(0, 570);
+	poo0.x = xDist(rng);
+	poo0.y = yDist(rng);
+	poo1.x = xDist(rng);
+	poo1.y = yDist(rng);
+	poo2.x = xDist(rng);
+	poo2.y = yDist(rng);
+	dude.x = 400;
+	dude.y = 300;
+}
 
 void Game::Go()
 {
@@ -28439,7 +28445,7 @@ void Game::ComposeFrame()
 	}
 	else
 	{
-		if (poo0.IsEaten() && poo1.IsEaten() && poo2.IsEaten())
+		if (poo0.isEaten && poo1.isEaten && poo2.isEaten)
 		{
 			DrawGameOver(358, 268);
 		}
@@ -28447,15 +28453,15 @@ void Game::ComposeFrame()
 		//DrawFace(dude.x, dude.y);
 		dude.Draw(gfx);
 
-		if (!poo0.IsEaten())
+		if (!poo0.isEaten)
 		{
 			poo0.Draw(gfx);
 		}
-		if (!poo1.IsEaten())
+		if (!poo1.isEaten)
 		{
 			poo1.Draw(gfx);
 		}
-		if (!poo2.IsEaten())
+		if (!poo2.isEaten)
 		{
 			poo2.Draw(gfx);
 		}
