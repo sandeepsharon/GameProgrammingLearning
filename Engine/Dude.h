@@ -9,8 +9,8 @@ public:
 	void Update(const Keyboard& kbd);
 	int GetX() const;
 	int GetY() const;
-	static int GetWidth();
-	static int GetHeight();
+	int GetWidth() const;
+	int GetHeight() const;
 private:
 	int x = 400; //400
 	int y = 300; //300
