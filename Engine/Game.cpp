@@ -32,8 +32,8 @@ Game::Game( MainWindow& wnd )
 	poo1(xDist(rng), yDist(rng), -1, 1),
 	poo2(xDist(rng), yDist(rng), 1, -1)
 {
-	dude.x = 400;
-	dude.y = 300;
+	//dude.x = 400;
+	//dude.y = 300;
 }
 
 void Game::Go()
@@ -49,22 +49,7 @@ void Game::UpdateModel()
 
 	if (IsStarted)
 	{
-		if (wnd.kbd.KeyIsPressed(VK_RIGHT))
-		{
-			dude.x = dude.x + 1;
-		}
-		if (wnd.kbd.KeyIsPressed(VK_LEFT))
-		{
-			dude.x = dude.x - 1;
-		}
-		if (wnd.kbd.KeyIsPressed(VK_DOWN))
-		{
-			dude.y = dude.y + 1;
-		}
-		if (wnd.kbd.KeyIsPressed(VK_UP))
-		{
-			dude.y = dude.y - 1;
-		}
+		dude.Update(wnd.kbd);
 		dude.ClampToScreen();
 		poo0.Update();
 		poo1.Update();

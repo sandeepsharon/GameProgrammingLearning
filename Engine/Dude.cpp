@@ -343,3 +343,43 @@ void Dude::Draw(Graphics& gfx) const
 	gfx.PutPixel(11 + x, 19 + y, 0, 0, 0);
 	gfx.PutPixel(12 + x, 19 + y, 0, 0, 0);
 }
+
+void Dude::Update(const Keyboard & kbd)
+{
+	if (kbd.KeyIsPressed(VK_RIGHT))
+	{
+		x = x + 1;
+	}
+	if (kbd.KeyIsPressed(VK_LEFT))
+	{
+		x = x - 1;
+	}
+	if (kbd.KeyIsPressed(VK_DOWN))
+	{
+		y = y + 1;
+	}
+	if (kbd.KeyIsPressed(VK_UP))
+	{
+		y = y - 1;
+	}
+}
+
+int Dude::GetX() const
+{
+	return x;
+}
+
+int Dude::GetY() const
+{
+	return y;
+}
+
+int Dude::GetWidth()
+{
+	return width;
+}
+
+int Dude::GetHeight()
+{
+	return height;
+}
